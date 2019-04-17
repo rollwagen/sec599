@@ -4,3 +4,6 @@ packer_cache/
 
 # For built Vagrant boxes
 *.box
+
+# MacOS specific
+.DS_Store
