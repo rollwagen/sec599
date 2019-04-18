@@ -19,7 +19,7 @@ Write-Host "Deleting SoftwareDistribution download directory...."
 Stop-Service wuauserv
 Remove-Item -Recurse -Force C:\Windows\SoftwareDistribution\Download
 New-Item C:\Windows\SoftwareDistribution\Download
-Start-Service wuauserv
+# Start-Service wuauserv
 
 Write-Host "Running udefrag and sdelete..."
 cmd /c C:\Windows\Temp\ultradefrag-portable-6.1.0.amd64\udefrag.exe --optimize --repeat C:

@@ -11,3 +11,4 @@ netsh advfirewall firewall set rule group="Windows Remote Administration" new en
 netsh advfirewall firewall set rule name="Windows Remote Management (HTTP-In)" new enable=yes action=allow
 Set-Service winrm -startuptype "auto"
 Restart-Service winrm
+

@@ -11,3 +11,4 @@ if ($winRMService.Status -eq "Running"){
 Stop-Service winrm
 
 Set-Service -Name winrm -StartupType Disabled
+
