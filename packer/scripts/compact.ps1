@@ -12,9 +12,13 @@ Write-Host "Downloading sdelete tool...."
 Write-Host "Unzipping sdelete tool...."
 Expand-Archive C:\Windows\Temp\SDelete.zip C:\Windows\Temp
 
+Write-Host "Deleting SoftwareDistribution download directory...."
+Stop-Service wuauserv
+Remove-Item -Recurse -Force C:\Windows\SoftwareDistribution\Download
+New-Item C:\Windows\SoftwareDistribution\Download
+Start-Service wuauserv
 
-#TODO
-net stop wuauserv
-rmdir /S /Q C:\Windows\SoftwareDistribution\Download
-mkdir C:\Windows\SoftwareDistribution\Download
-net start wuauserv
+Write-Host "Running udefrag and sdelete..."
+cmd /c C:\Windows\Temp\ultradefrag-portable-6.1.0.amd64\udefrag.exe --optimize --repeat C:
+cmd /c %SystemRoot%\System32\reg.exe ADD HKCU\Software\Sysinternals\SDelete /v EulaAccepted /t REG_DWORD /d 1 /f
+cmd /c C:\Windows\Temp\sdelete.exe -q -z C:
