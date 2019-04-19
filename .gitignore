@@ -7,3 +7,6 @@ packer_cache/
 
 # MacOS specific
 .DS_Store
+
+# Vagrant working dir
+.vagrant
