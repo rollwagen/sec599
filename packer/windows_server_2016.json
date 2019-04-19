@@ -11,7 +11,7 @@
         "{{user `autounattend`}}",
         "./scripts/disable-winrm.ps1",
         "./scripts/enable-winrm.ps1",
-        "./script/unattend.xml",
+        "./scripts/unattend.xml",
         "./scripts/sysprep.bat",
 	"./scripts/provision_varia.bat",
 	"./scripts/compact.ps1"
@@ -55,14 +55,13 @@
     {
       "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
       "scripts": [
-        "./scripts/vm-guest-tools.bat",
         "./scripts/enable-rdp.bat"
       ],
       "type": "windows-shell"
     },
     {
       "scripts": [
-        "./scripts/debloat-windows.ps1"
+        "./scripts/install-vmware-tools.ps1"
       ],
       "type": "powershell"
     },
@@ -73,19 +72,21 @@
     {
       "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
       "scripts": [
-        "./scripts/pin-powershell.bat",
-        "./scripts/set-winrm-automatic.bat",
-        "./scripts/uac-enable.bat",
-        "./scripts/dis-updates.bat",
-        "./scripts/compact.bat"
+        "./scripts/provision_varia.bat"
       ],
       "type": "windows-shell"
+    },
+    {
+     "scripts": [
+        "./scripts/compact.ps1"
+      ],
+      "type": "powershell"
     }
   ],
 
 
   "variables": {
-    "autounattend": "./answer_files/2016/Autounattend.xml",
+    "autounattend": "./autounattend_2016.xml",
     "disk_size": "61440",
     "disk_type_id": "1",
     "headless": "false",
