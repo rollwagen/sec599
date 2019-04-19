@@ -21,7 +21,13 @@ Remove-Item -Recurse -Force C:\Windows\SoftwareDistribution\Download
 New-Item C:\Windows\SoftwareDistribution\Download
 # Start-Service wuauserv
 
-Write-Host "Running udefrag and sdelete..."
-cmd /c C:\Windows\Temp\ultradefrag-portable-6.1.0.amd64\udefrag.exe --optimize --repeat C:
-cmd /c %SystemRoot%\System32\reg.exe ADD HKCU\Software\Sysinternals\SDelete /v EulaAccepted /t REG_DWORD /d 1 /f
-cmd /c C:\Windows\Temp\sdelete.exe -q -z C:
+Write-Host "Running ultradefrag..."
+#cmd /c "C:\Windows\Temp\ultradefrag-portable-6.1.0.amd64\udefrag.exe --optimize --repeat C:"
+Start-Process -FilePath 'C:\Windows\Temp\ultradefrag-portable-6.1.0.amd64\udefrag.exe' -ArgumentList '--optimize --repeat C:' -wait
+  
+
+Write-Host "Running sdelete..."
+cmd /c "%SystemRoot%\System32\reg.exe ADD HKCU\Software\Sysinternals\SDelete /v EulaAccepted /t REG_DWORD /d 1 /f"
+cmd /c "C:\Windows\Temp\sdelete.exe -q -z C:"
+
+Write-Host "Done running ultradefrag and sdelete..."

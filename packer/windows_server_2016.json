@@ -63,7 +63,8 @@
       "scripts": [
         "./scripts/install-vmware-tools.ps1"
       ],
-      "type": "powershell"
+      "type": "powershell",
+      "valid_exit_codes": [0, 3010]
     },
     {
       "restart_timeout": "{{user `restart_timeout`}}",
@@ -86,7 +87,7 @@
 
 
   "variables": {
-    "autounattend": "./autounattend_2016.xml",
+    "autounattend": "./Autounattend.xml",
     "disk_size": "61440",
     "disk_type_id": "1",
     "headless": "false",

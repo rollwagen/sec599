@@ -13,6 +13,6 @@ Write-Host "Running vmware tools setup/install...."
 $vmwareToolsSetupExe = $driveLetter + ':\' + "setup64.exe"
 cmd /c "$vmwareToolsSetupExe /s /l C:\\Windows\\Temp\\vmware_tools.log /v`"/qn REBOOT=R`""
 
-Write-Host "Cleaning up vmware tools install...."
+#Write-Host "Cleaning up vmware tools install...."
 Dismount-DiskImage -ImagePath C:\Windows\Temp\vmware-tools.iso
 Remove-Item  C:\Windows\Temp\vmware-tools.iso
