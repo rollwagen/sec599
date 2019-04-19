@@ -23,7 +23,7 @@ New-Item C:\Windows\SoftwareDistribution\Download
 
 Write-Host "Running ultradefrag..."
 # --optimize vs --quick-optimization
-Start-Process -FilePath 'C:\Windows\Temp\ultradefrag-portable-7.1.1.amd64\udefrag.exe' -ArgumentList '--quick-optimization --repeat C:' -wait
+Start-Process -FilePath 'C:\Windows\Temp\ultradefrag-portable-7.1.1.amd64\udefrag.exe' -ArgumentList '--optimize --repeat C:' -wait
   
 
 Write-Host "Running sdelete..."

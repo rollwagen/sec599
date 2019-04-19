@@ -18,7 +18,8 @@ Vagrant.configure("2") do |config|
     cfg.vm.network :forwarded_port, guest: 5985, host: 5985, id: "winrm", auto_correct: true
     #cfg.vm.network :forwarded_port, guest: 22, host: 2222, id: "ssh", auto_correct: true
     cfg.vm.network :forwarded_port, guest: 3389, host: 3389, id: "rdp", auto_correct: true
-    cfg.vm.network :private_network, ip: "192.168.38.2", gateway: "192.168.38.1"
+    #cfg.vm.network :private_network, ip: "192.168.38.2", gateway: "192.168.38.1"
+    config.vm.network "private_network", ip: "192.168.50.4"
     #cfg.vm.network :private_network, ip: "192.168.38.3", gateway: "192.168.38.1", dns: "192.168.38.2"
 
     #cfg.vm.provision "shell", path: "scripts/fix-second-network.ps1", privileged: false, args: "192.168.38.2"
