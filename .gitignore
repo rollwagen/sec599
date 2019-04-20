@@ -10,3 +10,9 @@ packer_cache/
 
 # Vagrant working dir
 .vagrant
+
+# Various dev notes and artefacts
+Vagrantfile_adfs
+Vagrantfile_dc
+Vagrantfile_windows_lab
+notes.txt

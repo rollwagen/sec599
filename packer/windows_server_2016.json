@@ -21,7 +21,7 @@
       "iso_checksum": "{{user `iso_checksum`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "iso_url": "{{user `iso_url`}}",
-      "memory": 2048,
+      "memory": 2304,
       "shutdown_command": "a:/sysprep.bat",
       "type": "vmware-iso",
       "version": 14,

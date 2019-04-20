@@ -1,1 +1,3 @@
 packer_cache
+output-vmware-iso
+vagrantfile-windows_2016.template_FITZGERALD
