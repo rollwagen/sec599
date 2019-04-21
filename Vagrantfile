@@ -6,11 +6,13 @@ Vagrant.configure("2") do |config|
   config.vm.box = "windows_2016_vmware"
   config.vm.hostname = "dc"
 
-  config.vm.communicator = "winrm"
 
+  config.vm.network "private_network", ip: "192.168.5.5/16"
   config.vm.network "forwarded_port", guest: 5985, host: 5985, id: "wimrm", auto_correct: true
   config.vm.network "forwarded_port", guest: 3389, host: 3389, id: "rdp", auto_correct: true
+  config.vm.network "forwarded_port", guest: 22, host: 2222, id: "ssh", disabled: true
 
+  config.vm.communicator = "winrm"
 
   config.vm.provider "vmware_desktop" do |vmware|
 	vmware.memory = 2048
