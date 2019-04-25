@@ -1,9 +1,13 @@
+#############################################################################
+##
+## Configure Network as part of Vagrant provisioning
+##
+#############################################################################
 
 Param (
     $IPAddress = "192.168.5.5",
     $Netmask = "16",
     $DnsServerAddress = ""
-    
 )
 
 # Get interface to configure.
@@ -16,7 +20,10 @@ $InterfaceIndex = $NetIPAddress.InterfaceIndex
 
 Write-Host "Setting IP address to  $($IPAddress) / $($Netmask) ..."
 New-NetIPAddress -InterfaceIndex $InterfaceIndex -IPAddress $IPAddress -PrefixLength $Netmask
+Get-NetAdapter -InterfaceIndex $InterfaceIndex  | Rename-NetAdapter -NewName "Ethernet_Lab"
 
+# If Domain Controller (name=DC) then don't setup DNS server.
+# (as the DC is the DNS server)
 if ($env:COMPUTERNAME -like "DC*" -or $DnsServerAddress -eq "") {
     Write-Host "Skipping setting DNS server."
 } else {
