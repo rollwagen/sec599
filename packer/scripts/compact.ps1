@@ -31,3 +31,4 @@ cmd /c "%SystemRoot%\System32\reg.exe ADD HKCU\Software\Sysinternals\SDelete /v 
 cmd /c "C:\Windows\Temp\sdelete.exe -q -z C:"
 
 Write-Host "Done running ultradefrag and sdelete..."
+

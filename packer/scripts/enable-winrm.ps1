@@ -1,3 +1,4 @@
+Write-Host "Enabling winrm....starting..."
 Enable-PSRemoting -Force
 winrm quickconfig -q
 winrm quickconfig -transport:http
@@ -7,8 +8,10 @@ winrm set winrm/config/service '@{AllowUnencrypted="true"}'
 winrm set winrm/config/service/auth '@{Basic="true"}'
 winrm set winrm/config/client/auth '@{Basic="true"}'
 winrm set winrm/config/listener?Address=*+Transport=HTTP '@{Port="5985"}'
+Write-Host "Enabling firewall for winrm...."
 netsh advfirewall firewall set rule group="Windows Remote Administration" new enable=yes
 netsh advfirewall firewall set rule name="Windows Remote Management (HTTP-In)" new enable=yes action=allow
 Set-Service winrm -startuptype "auto"
+Write-Host "Restarting winrm service..."
 Restart-Service winrm
 
