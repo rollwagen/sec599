@@ -1,0 +1,100 @@
+{
+  "builders": [
+    {
+      "boot_command": "",
+      "boot_wait": "6m",
+      "communicator": "winrm",
+      "cpus": 3,
+      "memory": 2560,
+      "disk_adapter_type": "lsisas1068",
+      "disk_size": "{{user `disk_size`}}",
+      "disk_type_id": "{{user `disk_type_id`}}",
+      "floppy_files": [
+        "{{user `autounattend`}}",
+	"./scripts/disable-winrm.ps1",
+        "./scripts/enable-winrm.ps1",
+        "./scripts/unattend.xml",
+        "./scripts/sysprep.bat",
+        "./scripts/provision_varia.bat",
+        "./scripts/compact.ps1",
+        "./scripts/disable-defender.ps1",
+        "./scripts/install-vmware-tools.ps1",
+	"./scripts/fixnetwork.ps1"
+      ],
+      "guest_os_type": "windows9-64",
+      "headless": "{{user `headless`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_url": "{{user `iso_url`}}",
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "type": "vmware-iso",
+      "version": 16,
+      "vm_name": "windows_10",
+      "vmx_data": {
+        "RemoteDisplay.vnc.enabled": "false",
+        "RemoteDisplay.vnc.port": "5900"
+      },
+      "vmx_remove_ethernet_interfaces": true,
+      "vnc_port_max": 5980,
+      "vnc_port_min": 5900,
+      "winrm_password": "vagrant",
+      "winrm_timeout": "{{user `winrm_timeout`}}",
+      "winrm_username": "vagrant"
+    }
+  ],
+  "post-processors": [
+    {
+      "keep_input_artifact": false,
+      "output": "windows_10_{{.Provider}}.box",
+      "type": "vagrant",
+      "vagrantfile_template": "vagrantfile-windows_10.template"
+    }
+  ],
+  "provisioners": [
+    {
+      "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
+      "scripts": [
+        "./scripts/enable-rdp.bat"
+      ],
+      "type": "windows-shell"
+    },
+    {
+      "scripts": [
+        "./scripts/disable-defender.ps1",
+        "./scripts/install-vmware-tools.ps1"
+      ],
+      "type": "powershell",
+      "valid_exit_codes": [0, 3010]
+    },
+    {
+      "restart_timeout": "{{user `restart_timeout`}}",
+      "type": "windows-restart"
+    },
+    {
+      "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
+      "scripts": [
+        "./scripts/provision_varia.bat"
+      ],
+      "type": "windows-shell"
+    },
+    {
+      "scripts": [
+	"./scripts/compact.ps1"
+      ],
+      "type": "powershell"
+    }
+  ],
+  "variables": {
+    "autounattend": "./autounattend/10/Autounattend.xml",
+    "disk_size": "61440",
+    "disk_type_id": "1",
+    "headless": "false",
+    "iso_checksum": "0278fc4638741f4a1dc85c39ed7fa76bb15fd582165f6ef036e9a9fb2f029351",
+    "iso_checksum_type": "sha256",
+    "iso_url": "https://software-download.microsoft.com/download/sg/17763.107.101029-1455.rs5_release_svc_refresh_CLIENTENTERPRISEEVAL_OEMRET_x64FRE_en-us.iso",
+    "restart_timeout": "3m",
+    "vhv_enable": "false",
+    "winrm_timeout": "6h"
+  }
+}
+
