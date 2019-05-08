@@ -14,7 +14,8 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", path: "./vagrant_scripts/configure_network.ps1", args: "192.168.5.5"
 
   config.vm.network "forwarded_port", guest: 5985, host: 5985, id: "wimrm", auto_correct: true
-  config.vm.network "forwarded_port", guest: 3389, host: 3389, id: "rdp", auto_correct: true
+  config.vm.network "forwarded_port", guest: 3389, host: 3389, id: "rdp_tcp", auto_correct: true, protocol: "rcp"
+  config.vm.network "forwarded_port", guest: 3389, host: 3389, id: "rdp_udp", auto_correct: true, protocol: "udp"
   config.vm.network "forwarded_port", guest: 22, host: 2222, id: "ssh", disabled: true
 
   config.vm.synced_folder ".", "/vagrant", disabled: true
@@ -28,7 +29,7 @@ Vagrant.configure("2") do |config|
   config.vm.provider "vmware_desktop" do |vmware|
 	vmware.memory = 2560
 	vmware.cpus = 4
-	vmware.gui = true
+	vmware.gui = false
 	vmware.vmx["displayname"] = "DC - Windows Server 2016"
   end
 

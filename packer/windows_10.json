@@ -2,7 +2,7 @@
   "builders": [
     {
       "boot_command": "",
-      "boot_wait": "6m",
+      "boot_wait": "4m",
       "communicator": "winrm",
       "cpus": 3,
       "memory": 2560,
@@ -88,7 +88,7 @@
     "autounattend": "./autounattend/10/Autounattend.xml",
     "disk_size": "61440",
     "disk_type_id": "1",
-    "headless": "false",
+    "headless": "true",
     "iso_checksum": "0278fc4638741f4a1dc85c39ed7fa76bb15fd582165f6ef036e9a9fb2f029351",
     "iso_checksum_type": "sha256",
     "iso_url": "https://software-download.microsoft.com/download/sg/17763.107.101029-1455.rs5_release_svc_refresh_CLIENTENTERPRISEEVAL_OEMRET_x64FRE_en-us.iso",
