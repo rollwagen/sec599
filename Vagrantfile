@@ -3,35 +3,58 @@
 
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "windows_2016_vmware"
-  config.vm.hostname = "dc"
+  config.vm.define "windows01" do |config|
+    config.vm.box = "windows_10_vmware"
+    config.vm.hostname = "windows01"
 
-  config.vm.communicator = "winrm"
+    config.vm.communicator = "winrm"
 
-  # Network (ethernet adapter) config; need to set via script as "configuring 
-  # secondary network adapters through VMware on Windows is not yet supported.:
-  config.vm.network "private_network", ip: "192.168.5.5/16"
-  config.vm.provision "shell", path: "./vagrant_scripts/configure_network.ps1", args: "192.168.5.5"
+#    config.vm.network "forwarded_port", guest: 3389, host: 3389, id: "rdp_tcp", auto_correct: true, protocol: "tcp"
+#    config.vm.network "forwarded_port", guest: 3389, host: 3389, id: "rdp_udp", auto_correct: true, protocol: "udp"
 
-  config.vm.network "forwarded_port", guest: 5985, host: 5985, id: "wimrm", auto_correct: true
-  config.vm.network "forwarded_port", guest: 3389, host: 3389, id: "rdp_tcp", auto_correct: true, protocol: "rcp"
-  config.vm.network "forwarded_port", guest: 3389, host: 3389, id: "rdp_udp", auto_correct: true, protocol: "udp"
-  config.vm.network "forwarded_port", guest: 22, host: 2222, id: "ssh", disabled: true
+    config.vm.provider "vmware_desktop" do |vmware|
+      vmware.vmx["displayname"] = "Windows01 - Member Server - Windows 10"
+      vmware.gui = true
+    end
 
-  config.vm.synced_folder ".", "/vagrant", disabled: true
+    # Network (ethernet adapter) config; need to set via script as "configuring 
+    # secondary network adapters through VMware on Windows is not yet supported.:
+    config.vm.network "private_network", ip: "192.168.10.15/16"
+    config.vm.provision "shell", path: "./vagrant_scripts/configure_network.ps1", args: "192.168.10.15"
+    config.vm.provision "shell", path: "./vagrant_scripts/join_domain.ps1"
 
-  # Provisioning / configuration scripts
-  config.vm.provision "shell", path: "./vagrant_scripts/install_adds.ps1"
-  config.vm.provision "shell", path: "./vagrant_scripts/setup_forest.ps1"
-#  config.vm.provision "shell", path: "./vagrant_scripts/populate_ad.ps1"
-  
-
-  config.vm.provider "vmware_desktop" do |vmware|
-	vmware.memory = 2560
-	vmware.cpus = 4
-	vmware.gui = false
-	vmware.vmx["displayname"] = "DC - Windows Server 2016"
   end
+
+  config.vm.define "dc" do |config|
+    config.vm.box = "windows_2016_vmware"
+    config.vm.hostname = "dc"
+
+    config.vm.communicator = "winrm"
+
+    # Network (ethernet adapter) config; need to set via script as "configuring 
+    # secondary network adapters through VMware on Windows is not yet supported.:
+    config.vm.network "private_network", ip: "192.168.5.5/16"
+    config.vm.provision "shell", path: "./vagrant_scripts/configure_network.ps1", args: "192.168.5.5"
+
+    config.vm.network "forwarded_port", guest: 5985, host: 5985, id: "wimrm", auto_correct: true
+    #config.vm.network "forwarded_port", guest: 3389, host: 3389, id: "rdp_tcp", auto_correct: true, protocol: "tcp"
+    #config.vm.network "forwarded_port", guest: 3389, host: 3389, id: "rdp_udp", auto_correct: true, protocol: "udp"
+    config.vm.network "forwarded_port", guest: 22, host: 2222, id: "ssh", disabled: true
+
+    config.vm.synced_folder ".", "/vagrant", disabled: true
+
+    # Provisioning / configuration scripts
+    config.vm.provision "shell", path: "./vagrant_scripts/install_adds.ps1"
+    config.vm.provision "shell", path: "./vagrant_scripts/setup_forest.ps1"
+    #-- NOT WORKING ON DC -- config.vm.provision "shell", path: "./vagrant_scripts/populate_ad.ps1"
+    
+    config.vm.provider "vmware_desktop" do |vmware|
+    vmware.memory = 2560
+    vmware.cpus = 4
+    vmware.gui = false
+    vmware.vmx["displayname"] = "DC - Domain Controller - Windows Server 2016"
+    end
+end
 
 end
 
