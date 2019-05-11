@@ -16,3 +16,6 @@ Vagrantfile_adfs
 Vagrantfile_dc
 Vagrantfile_windows_lab
 notes.txt
+
+# 'tmp' directory
+tmp/

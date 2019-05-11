@@ -13,4 +13,4 @@ The lab target setup as described in the below diagram:
         |      |
         +------+
 
-* `DC` - 192.168.1.5 - _Credentials:_ Administrator/Administrator, _Domain:_ `seclabs.lab`, _safemodepwd:_ Seclabs123
+* `DC` - 192.168.1.5 - _Credentials:_ Administrator/Admin123, _Domain:_ `seclabs.lab`, _safemodepwd:_ Seclabs123
