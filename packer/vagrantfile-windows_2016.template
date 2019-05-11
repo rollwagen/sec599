@@ -15,7 +15,15 @@ Vagrant.configure("2") do |config|
     config.vm.guest = :windows
     config.windows.halt_timeout = 15
 
-    config.vm.network "forwarded_port", guest: 3389, host: 3389, id: "rdp", auto_correct: true
+    #
+    # commenting out as probable better to configure as wished in
+    # actual Vagrantfile (e.g. most likely both udp and tcp needed)
+    #
+    #config.vm.network "forwarded_port", guest: 3389, host: 3389, id: "rdp", auto_correct: true
+
+    #
+    # disable 'ssh' as this is a Windows machine (with no ssd installed in the image)
+    #
     config.vm.network "forwarded_port", guest: 22, host: 2222, id: "ssh", disabled: true
 
     config.vm.provider :vmware_fusion do |v, override|
