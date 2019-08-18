@@ -24,7 +24,7 @@ Vagrant.configure("2") do |config|
 
     # Network (ethernet adapter) config; need to set via script as "configuring 
     # secondary network adapters through VMware on Windows is not yet supported.:
-    config.vm.network "private_network", ip: "192.168.10.15/17"
+    config.vm.network "private_network", ip: "192.168.10.17/16"
     config.vm.provision "shell", path: "./vagrant_scripts/configure_network.ps1", args: "192.168.10.17"
     config.vm.provision "shell", path: "./vagrant_scripts/join_domain.ps1"
   end
