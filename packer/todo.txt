@@ -1,3 +1,5 @@
 
 scripts..autounattend..powershell 1.0?  2.0? or no version?
 
+have a script that extracts all links (https://...vmware.iso) from all other scripts and validates URL still exists. (issue: updates packages such as vmware tools)
+
