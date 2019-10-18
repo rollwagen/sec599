@@ -18,7 +18,7 @@ print()
 #
 # VMWare fusion
 #
-print(output.BOLD,"Checking for VMWare Fusion presense......", end='')
+print(output.BOLD,"Checking for VMWare Fusion presence......", end='')
 vmwarestatus = subprocess.call(["vmrun", "list"], stdout=subprocess.PIPE)
 if vmwarestatus !=0:
 	print(ouput.FAIL,"FAILED")
@@ -31,7 +31,7 @@ print(output.ENDC, end='')
 #
 # Vagrant
 #
-print(output.BOLD, "Checking for Vagrant presense......", end='')
+print(output.BOLD, "Checking for Vagrant presence......", end='')
 sys.stdout.flush()
 vagrantstatus = subprocess.call(["vagrant", "status"], stdout=subprocess.PIPE)
 if vagrantstatus !=0:
@@ -41,4 +41,4 @@ else:
 
 
 # End checking pre-requisites
-print()
+print(output.ENDC, end='')
