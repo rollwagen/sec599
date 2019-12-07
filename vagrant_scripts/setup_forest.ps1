@@ -29,5 +29,5 @@ Write-Host "Done installing Active Directory Forest..."
 
 # See https://github.com/dbroeglin/windows-lab/issues/1
 Write-Host "Start sleeping until reboot to prevent vagrant connection failures..."
-Start-Sleep 190
+Start-Sleep 230
 Write-Host "Done sleeping."
