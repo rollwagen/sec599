@@ -18,7 +18,7 @@ New-ADUser `
      -Surname "Fuss" `
      -SamAccountName nick.fuss `
      -UserPrincipalName nick.fuss@seclabs.lab `
-     -AccountPassword (ConvertTo-SecureString "goodCla$s92" -asplaintext -force) `
+     -AccountPassword (ConvertTo-SecureString "=ancyGorilla63" -asplaintext -force) `
      -PassThru | Enable-ADAccount
 
 New-ADGroup `
