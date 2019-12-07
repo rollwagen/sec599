@@ -49,6 +49,8 @@ Vagrant.configure("2") do |config|
     config.vm.network "private_network", ip: "192.168.10.17/16"
     config.vm.provision "shell", path: "./vagrant_scripts/configure_network.ps1", args: "192.168.10.17"
     config.vm.provision "shell", path: "./vagrant_scripts/join_domain.ps1"
+    config.vm.provision "shell", path: "./vagrant_scripts/install_jumphost_tools.ps1"
+    config.vm.provision "shell", path: "./vagrant_scripts/populate_ad.ps1"
   end
 
 
