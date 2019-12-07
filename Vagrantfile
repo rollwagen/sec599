@@ -4,6 +4,28 @@
 Vagrant.configure("2") do |config|
 
 
+
+  config.vm.define "elastic" do |config|
+    config.vm.box = "bento/ubuntu-18.04"
+    config.vm.hostname = "elastic"
+    config.vm.network "private_network"
+    #config.vm.network "private_network", ip: "192.168.10.20/16"
+    #config.vm.network "private_network",
+    #	ip: "192.168.10.18",
+    #	netmask: "16"
+    config.vm.provision "shell", path: "elastic.sh"
+
+    config.vm.provider "vmware_desktop" do |vmware|
+      vmware.vmx["displayname"] = "Elastic - Ubuntu 18.04"
+      vmware.memory = 1792
+      vmware.cpus = 2
+      vmware.gui = false 
+    end
+
+  end
+
+
+
   config.vm.define "jumphost" do |config|
     config.vm.box = "windows_10_vmware"
     config.vm.hostname = "jumphost"
