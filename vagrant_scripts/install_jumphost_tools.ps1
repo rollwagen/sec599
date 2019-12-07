@@ -1,6 +1,6 @@
 Write-Host "Installing choco..."
 Set-ExecutionPolicy Bypass -Scope Process -Force
-#iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 Write-Host "Finished installing choco..."
 
 Write-Host "Installing Firefox."
