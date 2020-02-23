@@ -19,5 +19,5 @@ reg add HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU 
 sc config wuauserv start=disabled
 rem net stop wuauserv
 
-rem Manual perform update:  net stop wuauserv; ren c:\windows\SoftwareDistribution softwaredistribution.old; net start wuauserv
+rem Manual perform update:  sc config wuauserv start=demand; net stop wuauserv; ren c:\windows\SoftwareDistribution softwaredistribution.old; net start wuauserv; sc config wuauserv start=disabled
 
