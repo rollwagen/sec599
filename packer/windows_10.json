@@ -5,7 +5,7 @@
       "boot_wait": "4m",
       "communicator": "winrm",
       "cpus": 2,
-      "memory": 2560,
+      "memory": 2304,
       "disk_adapter_type": "lsisas1068",
       "disk_size": "{{user `disk_size`}}",
       "disk_type_id": "{{user `disk_type_id`}}",
@@ -28,7 +28,6 @@
       "iso_url": "{{user `iso_url`}}",
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "type": "vmware-iso",
-      "version": 16,
       "vm_name": "windows_10",
       "vmx_data": {
         "RemoteDisplay.vnc.enabled": "false",
@@ -89,12 +88,12 @@
     "disk_size": "61440",
     "disk_type_id": "1",
     "headless": "true",
-    "iso_checksum": "ab4862ba7d1644c27f27516d24cb21e6b39234eb3301e5f1fb365a78b22f79b3",
+    "iso_checksum": "9ef81b6a101afd57b2dbfa44d5c8f7bc94ff45b51b82c5a1f9267ce2e63e9f53",
     "iso_checksum_type": "sha256",
-    "iso_url": "https://software-download.microsoft.com/download/pr/18362.30.190401-1528.19h1_release_svc_refresh_CLIENTENTERPRISEEVAL_OEMRET_x64FRE_en-us.iso",
+    "iso_url": "https://software-download.microsoft.com/download/pr/18363.418.191007-0143.19h2_release_svc_refresh_CLIENTENTERPRISEEVAL_OEMRET_x64FRE_en-us.iso",
     "restart_timeout": "6m",
     "vhv_enable": "false",
-    "winrm_timeout": "6h"
+    "winrm_timeout": "2h"
   }
 }
 
