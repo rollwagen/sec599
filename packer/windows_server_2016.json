@@ -13,13 +13,12 @@
         "./scripts/enable-winrm.ps1",
         "./scripts/unattend.xml",
         "./scripts/sysprep.bat",
-	"./scripts/provision_varia.bat",
-	"./scripts/compact.ps1"
+        "./scripts/provision_varia.bat",
+        "./scripts/compact.ps1"
       ],
       "guest_os_type": "windows9srv-64",
       "headless": "{{user `headless`}}",
-      "iso_checksum": "{{user `iso_checksum`}}",
-      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_checksum": "{{user `iso_checksum_type`}}:{{user `iso_checksum`}}",
       "iso_url": "{{user `iso_url`}}",
       "memory": 2304,
       "shutdown_command": "a:/sysprep.bat",
@@ -38,9 +37,6 @@
       "winrm_username": "vagrant"
     }
   ],
-
-
-
   "post-processors": [
     {
       "keep_input_artifact": false,
@@ -49,9 +45,6 @@
       "vagrantfile_template": "vagrantfile-windows_2016.template"
     }
   ],
-
-
-
   "provisioners": [
     {
       "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
@@ -65,7 +58,10 @@
         "./scripts/install-vmware-tools.ps1"
       ],
       "type": "powershell",
-      "valid_exit_codes": [0, 3010]
+      "valid_exit_codes": [
+        0,
+        3010
+      ]
     },
     {
       "restart_timeout": "{{user `restart_timeout`}}",
@@ -79,19 +75,17 @@
       "type": "windows-shell"
     },
     {
-     "scripts": [
+      "scripts": [
         "./scripts/compact.ps1"
       ],
       "type": "powershell"
     }
   ],
-
-
   "variables": {
     "autounattend": "./autounattend/2016/Autounattend.xml",
     "disk_size": "61440",
     "disk_type_id": "1",
-    "headless": "true",
+    "headless": "false",
     "iso_checksum": "70721288BBCDFE3239D8F8C0FAE55F1F",
     "iso_checksum_type": "md5",
     "iso_url": "https://software-download.microsoft.com/download/pr/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO",
