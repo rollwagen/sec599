@@ -5,13 +5,12 @@
       "boot_wait": "4m",
       "communicator": "winrm",
       "cpus": 2,
-      "memory": 2304,
       "disk_adapter_type": "lsisas1068",
       "disk_size": "{{user `disk_size`}}",
       "disk_type_id": "{{user `disk_type_id`}}",
       "floppy_files": [
         "{{user `autounattend`}}",
-	"./scripts/disable-winrm.ps1",
+        "./scripts/disable-winrm.ps1",
         "./scripts/enable-winrm.ps1",
         "./scripts/unattend.xml",
         "./scripts/sysprep.bat",
@@ -19,13 +18,13 @@
         "./scripts/compact.ps1",
         "./scripts/disable-defender.ps1",
         "./scripts/install-vmware-tools.ps1",
-	"./scripts/fixnetwork.ps1"
+        "./scripts/fixnetwork.ps1"
       ],
       "guest_os_type": "windows9-64",
       "headless": "{{user `headless`}}",
-      "iso_checksum": "{{user `iso_checksum`}}",
-      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_checksum": "{{user `iso_checksum_type`}}:{{user `iso_checksum`}}",
       "iso_url": "{{user `iso_url`}}",
+      "memory": 2304,
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "type": "vmware-iso",
       "vm_name": "windows_10",
@@ -63,7 +62,10 @@
         "./scripts/install-vmware-tools.ps1"
       ],
       "type": "powershell",
-      "valid_exit_codes": [0, 3010]
+      "valid_exit_codes": [
+        0,
+        3010
+      ]
     },
     {
       "restart_timeout": "{{user `restart_timeout`}}",
@@ -78,7 +80,7 @@
     },
     {
       "scripts": [
-	"./scripts/compact.ps1"
+        "./scripts/compact.ps1"
       ],
       "type": "powershell"
     }
@@ -87,10 +89,10 @@
     "autounattend": "./autounattend/10/Autounattend.xml",
     "disk_size": "61440",
     "disk_type_id": "1",
-    "headless": "true",
-    "iso_checksum": "9ef81b6a101afd57b2dbfa44d5c8f7bc94ff45b51b82c5a1f9267ce2e63e9f53",
+    "headless": "false",
+    "iso_checksum": "f1a4f2176259167cd2c8bf83f3f5a4039753b6cc28c35ac624da95a36e9620fc",
     "iso_checksum_type": "sha256",
-    "iso_url": "https://software-download.microsoft.com/download/pr/18363.418.191007-0143.19h2_release_svc_refresh_CLIENTENTERPRISEEVAL_OEMRET_x64FRE_en-us.iso",
+    "iso_url": "https://software-download.microsoft.com/download/pr/19041.264.200511-0456.vb_release_svc_refresh_CLIENTENTERPRISEEVAL_OEMRET_x64FRE_en-us.iso",
     "restart_timeout": "6m",
     "vhv_enable": "false",
     "winrm_timeout": "2h"
