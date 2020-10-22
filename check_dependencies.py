@@ -23,7 +23,7 @@ print()
 print(output.BOLD, "Checking for VMWare Fusion presence......", end="")
 vmwarestatus = subprocess.call(["vmrun", "list"], stdout=subprocess.PIPE)
 if vmwarestatus != 0:
-    print(ouput.FAIL, "FAILED")
+    print(output.FAIL, "FAILED")
 else:
     print(output.OK, "OK")
 
