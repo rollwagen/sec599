@@ -1,5 +1,6 @@
+rem https://rmccurdy.com/.scripts/Windowd_10_Debloat_security/RemoveW10Bloat.bat
 
-@rem **** Remove AppxPackage apps ****
+rem **** Remove AppxPackage apps ****
 PowerShell -Command "Get-AppxPackage *3DBuilder* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *Cortana* | Remove-AppxPackage"
 PowerShell -Command "Get-AppxPackage *Getstarted* | Remove-AppxPackage"
