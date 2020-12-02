@@ -18,7 +18,8 @@
         "./scripts/compact.ps1",
         "./scripts/disable-defender.ps1",
         "./scripts/install-vmware-tools.ps1",
-        "./scripts/fixnetwork.ps1"
+        "./scripts/fixnetwork.ps1",
+	"./scripts/debloat.bat"
       ],
       "guest_os_type": "windows9-64",
       "headless": "{{user `headless`}}",
@@ -75,6 +76,13 @@
       "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
       "scripts": [
         "./scripts/provision_varia.bat"
+      ],
+      "type": "windows-shell"
+    },
+    {
+      "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
+      "scripts": [
+        "./scripts/debloat.bat"
       ],
       "type": "windows-shell"
     },
