@@ -1,6 +1,8 @@
 # sec599 lab
 
-The lab target setup as described in the below diagram:
+[Vagrant](https://www.vagrantup.com/) and [Packer](https://www.packer.io/) based purple team lab for a local (VMWare Fusion) based environment.
+
+
 
       192.168.10.x
     +-----------------------------------------------------+
