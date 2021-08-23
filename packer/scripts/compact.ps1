@@ -6,14 +6,14 @@ Write-Host "Downloading ultradefrag tool..."
 (New-Object System.Net.WebClient).DownloadFile('https://sourceforge.net/projects/ultradefrag/files/stable-release/7.1.4/ultradefrag-portable-7.1.4.bin.amd64.zip', 'C:\Windows\Temp\ultradefrag.zip')
 
 Write-Host "Unzipping ultradefrag tool...."
-Expand-Archive C:\Windows\Temp\ultradefrag.zip C:\Windows\Temp
+Expand-Archive -Force C:\Windows\Temp\ultradefrag.zip C:\Windows\Temp
 
 
 Write-Host "Downloading sdelete tool...."
 (New-Object System.Net.WebClient).DownloadFile('https://download.sysinternals.com/files/SDelete.zip', 'C:\Windows\Temp\SDelete.zip')
 
 Write-Host "Unzipping sdelete tool...."
-Expand-Archive C:\Windows\Temp\SDelete.zip C:\Windows\Temp
+Expand-Archive -Force C:\Windows\Temp\SDelete.zip C:\Windows\Temp
 
 Write-Host "Deleting SoftwareDistribution download directory...."
 Stop-Service wuauserv
